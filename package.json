@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.14.2"
+  },
+  "name": "interview-task-websocket-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "get": "curl --header \"Content-Type: application/json\" --request GET http://localhost:3000/api/resource/$ID",
+    "create": "curl --header \"Content-Type: application/json\" --request POST --data '{ \"content\": { \"username\": \"test\", \"password\": \"1234\" } }' http://localhost:3000/api/resource/$ID/create",
+    "delete": "curl --header \"Content-Type: application/json\" --request DELETE http://localhost:3000/api/resource/$ID/delete",
+    "test": "ID=123 npm run get; ID=123 npm run create; ID=123 npm run create; ID=123 npm run get; ID=123 npm run delete; ID=123 npm run delete"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3"
+  }
+}

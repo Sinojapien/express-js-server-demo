@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page</title>
+</head>
+<body>
+    Client<br />
+    <button onclick="sendMessage()">Send Msg</button><br />
+</body>
+<script>
+  const maxRetryCount = 3;
+  let retryCount = 0;
+
+  let socket;
+  const connectWebSocket = () => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
+    socket = new WebSocket("ws://localhost:8080");
+    // On connect
+    socket.addEventListener("open", () => {
+      retryCount = 0;
+    })
+    // Listen for messages
+    socket.addEventListener("message", (event) => {
+      console.log("Message from server ", JSON.parse(event.data).data);
+    });
+    // Retry connection on close
+    socket.addEventListener("close", () => {
+      if (retryCount < maxRetryCount) {
+        console.log(`Connection closed. Retrying attempt ${retryCount + 1}/${maxRetryCount}`);
+        setTimeout(connectWebSocket, 2000);
+      }
+      retryCount += 1;
+    })
+  }
+  connectWebSocket();
+
+  const sendMessage = () => {
+    socket?.send(JSON.stringify({ type: "message", data: "Hello!" }));
+  }
+</script>
+</html>
