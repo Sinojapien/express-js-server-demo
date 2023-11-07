@@ -1,6 +1,7 @@
 const { getResource } = require("../../services/ResourceServices");
 const { getData } = require("../../databases/SimpleDatabase");
 
+// Minimize API calls
 const get = async (req, res) => {
   try {
     const { id } = req.params;
