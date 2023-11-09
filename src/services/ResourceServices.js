@@ -14,9 +14,9 @@ const createResource = async (
     throw new Error("Resource already existed.");
   }
 
-  const resource = { id, ...content };
-  validate(resource);
-  await createRemoteData(resource);
+  const input = { id, ...content };
+  validate(input);
+  const resource = await createRemoteData(input);
   return resource;
 };
 
@@ -26,6 +26,31 @@ const getResource = async ({ getRemoteData }, { id }) => {
     throw new Error("Resource not found.");
   }
   return resource;
+};
+
+const updateResource = async (
+  { getRemoteData, updateRemoteData },
+  { id, data }
+) => {
+  const resource = await getRemoteData(id);
+  if (!resource) {
+    throw new Error("Resource not found.");
+  }
+
+  // Constructing from input
+  const newData = {};
+  if (data.username !== undefined) {
+    newData.username = data.username;
+  }
+  if (data.password !== undefined) {
+    newData.password = data.password;
+  }
+  if (Object.keys(newData).length <= 0) {
+    throw new Error("Missing update data.");
+  }
+
+  const newResource = await updateRemoteData(resource.id, data);
+  return newResource;
 };
 
 const deleteResource = async ({ getRemoteData, deleteRemoteData }, { id }) => {
@@ -39,5 +64,6 @@ const deleteResource = async ({ getRemoteData, deleteRemoteData }, { id }) => {
 module.exports = {
   createResource,
   getResource,
+  updateResource,
   deleteResource,
 };

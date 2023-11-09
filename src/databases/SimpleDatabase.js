@@ -9,10 +9,17 @@ const connect = async () => {
 const createData = async (data) => {
   const database = await connect();
   database[data.id] = { ...data };
+  return database[data.id];
 };
 
 const getData = async (id) => {
   const database = await connect();
+  return database[id];
+};
+
+const updateData = async (id, data) => {
+  const database = await connect();
+  database[id] = { ...database[id], ...data };
   return database[id];
 };
 
@@ -24,5 +31,6 @@ const deleteData = async (id) => {
 module.exports = {
   createData,
   getData,
+  updateData,
   deleteData,
 };

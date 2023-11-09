@@ -1,4 +1,5 @@
 const ResourceModel = {
+  id: "",
   username: "",
   password: "",
 };
