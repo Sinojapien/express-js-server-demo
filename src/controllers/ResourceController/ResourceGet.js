@@ -6,6 +6,7 @@ const get = async (req, res) => {
   try {
     const { id } = req.params;
     if (!id) {
+      // 400
       throw new Error("Missing resource id.");
     }
 
