@@ -7,6 +7,8 @@ const app = express();
 // Middleware, highest priority
 app.use(express.json());
 // Public
+app.use("/public", express.static(require("path").resolve("./public")));
+// Page
 app.use("/", require("./routes"));
 // REST APIs
 app.use("/api", require("./routes/ResourceRoutes"));
