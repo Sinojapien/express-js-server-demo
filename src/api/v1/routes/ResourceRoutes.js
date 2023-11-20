@@ -9,26 +9,26 @@ const {
 const BASE_ROUTE = "/resource";
 
 // Reading resource
-router.get(`${BASE_ROUTE}/:id`, require("../middleware/cache"), get);
+router.get(`${BASE_ROUTE}/:id`, require("../middlewares/cache"), get);
 
 // Creating resource
 router.post(
   `${BASE_ROUTE}/:id/create`,
-  require("../middleware/noCache"),
+  require("../middlewares/noCache"),
   create
 );
 
 // Updating resource
 router.patch(
   `${BASE_ROUTE}/:id/update`,
-  require("../middleware/noCache"),
+  require("../middlewares/noCache"),
   update
 );
 
 // Deleting resource
 router.delete(
   `${BASE_ROUTE}/:id/delete`,
-  require("../middleware/noCache"),
+  require("../middlewares/noCache"),
   remove
 );
 
