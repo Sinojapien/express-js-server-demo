@@ -7,11 +7,7 @@ const BASE_ROUTE = "/resource";
 router.get(`${BASE_ROUTE}/:id`, require("../middlewares/cache"), get);
 
 // Creating resource
-router.post(
-  `${BASE_ROUTE}/:id/create`,
-  require("../middlewares/no-cache"),
-  create
-);
+router.post(`${BASE_ROUTE}/create`, require("../middlewares/no-cache"), create);
 
 // Updating resource
 router.patch(

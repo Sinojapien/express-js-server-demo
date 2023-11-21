@@ -1,8 +1,5 @@
 const { updateResource } = require("../../services/resource");
-const {
-  getData,
-  updateData,
-} = require("../../../../databases/simple-database");
+const { getData, updateData } = require("../../repositories/resource");
 
 const update = async (req, res) => {
   try {

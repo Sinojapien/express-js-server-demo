@@ -1,20 +1,16 @@
 const { ResourceModel } = require("../models/resource");
 
 const validate = (resource) => {
-  if (!Object.keys(ResourceModel).every((key) => resource[key] !== undefined)) {
+  if (
+    !Object.keys(ResourceModel)
+      .filter((key) => key !== "id")
+      .every((key) => resource[key] !== undefined)
+  ) {
     throw new Error("Resource is not valid.");
   }
 };
 
-const createResource = async (
-  { getRemoteData, createRemoteData },
-  { id, content }
-) => {
-  if ((await getRemoteData(id)) !== undefined) {
-    throw new Error("Resource already existed.");
-  }
-
-  const input = { id, ...content };
+const createResource = async ({ createRemoteData }, input) => {
   validate(input);
   const resource = await createRemoteData(input);
   return resource;

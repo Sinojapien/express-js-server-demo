@@ -1,16 +1,8 @@
 const { createResource } = require("../../services/resource");
-const {
-  createData,
-  getData,
-} = require("../../../../databases/simple-database");
+const { createData } = require("../../repositories/resource");
 
 const create = async (req, res) => {
   try {
-    const { id } = req.params;
-    if (!id) {
-      // 400
-      throw new Error("Missing resource id.");
-    }
     const { content } = req.body;
     if (!content) {
       // 400
@@ -18,8 +10,8 @@ const create = async (req, res) => {
     }
 
     const resource = await createResource(
-      { getRemoteData: getData, createRemoteData: createData },
-      { id, content }
+      { createRemoteData: createData },
+      content
     );
     res.status(201).send({ message: "Resource created.", resource });
 

@@ -1,8 +1,5 @@
 const { deleteResource } = require("../../services/resource");
-const {
-  getData,
-  deleteData,
-} = require("../../../../databases/simple-database");
+const { getData, deleteData } = require("../../repositories/resource");
 
 const remove = async (req, res) => {
   try {
