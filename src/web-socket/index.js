@@ -10,10 +10,7 @@ const server = require("http").createServer(app);
 const { WEBSOCKET_PORT } = require("../config");
 
 module.exports = () => {
-  const wsServer = new WebSocket.Server({
-    server,
-    // port: WEBSOCKET_PORT,
-  });
+  const wsServer = new WebSocket.Server({ server });
 
   wsServer.on("connection", (socket) => {
     const sessionId = crypto.randomUUID();

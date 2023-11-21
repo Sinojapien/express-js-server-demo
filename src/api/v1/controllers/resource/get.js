@@ -1,5 +1,5 @@
-const { getResource } = require("../../services/ResourceServices");
-const { getData } = require("../../databases/SimpleDatabase");
+const { getResource } = require("../../services/resource");
+const { getData } = require("../../../../databases/simple-database");
 
 // Minimize API calls
 const get = async (req, res) => {

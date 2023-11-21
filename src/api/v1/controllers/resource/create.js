@@ -1,5 +1,8 @@
-const { createResource } = require("../../services/ResourceServices");
-const { createData, getData } = require("../../databases/SimpleDatabase");
+const { createResource } = require("../../services/resource");
+const {
+  createData,
+  getData,
+} = require("../../../../databases/simple-database");
 
 const create = async (req, res) => {
   try {

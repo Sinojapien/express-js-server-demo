@@ -1,4 +1,4 @@
-const { ResourceModel } = require("../models/ResourceModel");
+const { ResourceModel } = require("../models/resource");
 
 const validate = (resource) => {
   if (!Object.keys(ResourceModel).every((key) => resource[key] !== undefined)) {
