@@ -1,9 +1,9 @@
 const WebSocket = require("ws");
 const crypto = require("crypto");
 
-const onOpen = require("./handlers/OpenHandler");
-const onMessage = require("./handlers/MessageHandler");
-const onClose = require("./handlers/CloseHandler");
+const onOpen = require("./handlers/open-handler");
+const onMessage = require("./handlers/message-handler");
+const onClose = require("./handlers/close-handler");
 
 const app = require("express")();
 const server = require("http").createServer(app);
