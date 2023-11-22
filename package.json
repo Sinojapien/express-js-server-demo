@@ -5,7 +5,7 @@
     "pg": "^8.11.3",
     "ws": "^8.14.2"
   },
-  "name": "interview-task-websocket-server",
+  "name": "express-js-server-demo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

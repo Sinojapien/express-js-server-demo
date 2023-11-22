@@ -1,19 +1,32 @@
-version: "v0.0.1"
+version: "0.0.1"
 services:
   postgresDB:
-    image: postgres
+    image: postgres:latest
     hostname: ${POSTGRES_HOST}
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: on-failure
   express-app:
-    image: express-js-server-app
-    ## TODO: wait untl database is setup
-    # build:
-    #   context: .
-    #   dockerfile: ./Dockerfile
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    hostname: ${HOST}
     depends_on:
       - postgresDB
+    restart: on-failure
+  reverse-proxy:
+    image: nginx:stable-alpine
+    volumes:
+      ## config file persistence
+      - ./nginx/nginx.conf:/etc/nginx/templates/default.conf.template
+    depends_on:
+      - postgresDB
+      - express-app
     ports:
-      - ${PORT}:${PORT}
+      - 80:80
+    environment:
+      EXPRESS_SERVER_HOST: ${HOST}
+      EXPRESS_SERVER_PORT: ${PORT}
+    restart: always

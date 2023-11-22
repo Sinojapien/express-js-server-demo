@@ -1,5 +1,5 @@
 ## NodeJS image
-FROM node:18
+FROM node:18-alpine
 
 ## Define working dir
 WORKDIR /usr/src/app
