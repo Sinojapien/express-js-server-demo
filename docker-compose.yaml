@@ -9,9 +9,10 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   express-app:
     image: express-js-server-app
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    ## TODO: wait untl database is setup
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
     depends_on:
       - postgresDB
     ports:
