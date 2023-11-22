@@ -12,8 +12,9 @@
     "start": "node ./src/index.js",
     "dev:postgres": "docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up postgresDB",
     "dev:express": "nodemon ./src/index.js",
-    "docker-start": "docker compose up",
-    "docker-build": "docker container rm express-js-server-app; docker image rm express-js-server-app; docker build -t express-js-server-app .",
+
+    "docker:build": "docker build -t express-js-server-app .",
+    "docker:start": "docker compose up",
     
     "get": "curl --header \"Content-Type: application/json\" --request GET http://localhost:3000/api/v1/resource/$ID",
     "create": "curl --header \"Content-Type: application/json\" --request POST --data '{ \"content\": { \"username\": \"test\", \"password\": \"1234\" } }' http://localhost:3000/api/v1/resource/create",

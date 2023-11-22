@@ -3,6 +3,7 @@ const { Client } = require("pg");
 const port = process.env.POSTGRES_PORT || 5432;
 
 const client = new Client({
+  host: process.env.POSTGRES_HOST || "",
   port,
   database: process.env.POSTGRES_DB || "",
 
