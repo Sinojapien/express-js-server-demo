@@ -16,7 +16,8 @@
   let socket;
   const connectWebSocket = () => {
     // https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
-    socket = new WebSocket("ws://localhost:8080");
+    // TODO: use env variable
+    socket = new WebSocket("ws://localhost/web-socket:80");
     // On connect
     socket.addEventListener("open", () => {
       retryCount = 0;

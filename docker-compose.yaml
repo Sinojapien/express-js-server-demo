@@ -8,13 +8,29 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: on-failure
+  web-socket:
+    build:
+      context: ./web-socket
+      dockerfile: ./Dockerfile
+    hostname: ${WEBSOCKET_HOST}
+    environment:
+      PORT: ${WEBSOCKET_PORT}
+    restart: on-failure
   express-app:
     build:
-      context: ./
+      context: ./express-app
       dockerfile: ./Dockerfile
-    hostname: ${HOST}
+    hostname: ${EXPRESS_HOST}
     depends_on:
       - postgresDB
+      - web-socket
+    environment:
+      PORT: ${EXPRESS_PORT}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: on-failure
   reverse-proxy:
     image: nginx:stable-alpine
@@ -24,9 +40,12 @@ services:
     depends_on:
       - postgresDB
       - express-app
+      - web-socket
     ports:
       - 80:80
     environment:
-      EXPRESS_SERVER_HOST: ${HOST}
-      EXPRESS_SERVER_PORT: ${PORT}
+      EXPRESS_SERVER_HOST: ${EXPRESS_HOST}
+      EXPRESS_SERVER_PORT: ${EXPRESS_PORT}
+      WEBSOCKET_SERVER_HOST: ${WEBSOCKET_HOST}
+      WEBSOCKET_SERVER_PORT: ${WEBSOCKET_PORT}
     restart: always
