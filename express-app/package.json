@@ -10,10 +10,10 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "get": "curl --header \"Content-Type: application/json\" --request GET http://localhost:3000/api/v1/resource/$ID",
-    "create": "curl --header \"Content-Type: application/json\" --request POST --data '{ \"content\": { \"username\": \"test\", \"password\": \"1234\" } }' http://localhost:3000/api/v1/resource/create",
-    "update": "curl --header \"Content-Type: application/json\" --request PATCH --data '{ \"content\": { \"username\": \"1234\", \"password\": \"test\" } }' http://localhost:3000/api/v1/resource/$ID/update",
-    "delete": "curl --header \"Content-Type: application/json\" --request DELETE http://localhost:3000/api/v1/resource/$ID/delete",
+    "get": "curl --header \"Content-Type: application/json\" --request GET http://localhost:3000/api/v1/resources/$ID",
+    "create": "curl --header \"Content-Type: application/json\" --request POST --data '{ \"content\": { \"username\": \"test\", \"password\": \"1234\" } }' http://localhost:3000/api/v1/resources",
+    "update": "curl --header \"Content-Type: application/json\" --request PATCH --data '{ \"content\": { \"username\": \"1234\", \"password\": \"test\" } }' http://localhost:3000/api/v1/resources/$ID",
+    "delete": "curl --header \"Content-Type: application/json\" --request DELETE http://localhost:3000/api/v1/resources/$ID",
     "test": "ID=1 npm run get && npm run create && ID=1 npm run get && ID=1 npm run update && ID=1 npm run delete && ID=1 npm run delete"
   },
   "keywords": [],
