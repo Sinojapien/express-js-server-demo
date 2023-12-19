@@ -6,6 +6,9 @@ const onMessage = require("./handlers/message-handler");
 const onClose = require("./handlers/close-handler");
 
 const app = require("express")();
+// Express Plugins
+app.use(require("helmet")());
+
 const server = require("http").createServer(app);
 const { PORT } = require("./config");
 

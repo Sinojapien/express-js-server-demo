@@ -4,6 +4,8 @@ const express = require("express");
 const { PORT } = require("./config");
 
 const app = express();
+// Plugins
+app.use(require("helmet")());
 // Middleware, highest priority
 app.use(express.json());
 // Public

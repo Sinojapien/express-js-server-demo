@@ -17,5 +17,6 @@ RUN  npm ci --omit=dev --no-audit && \
 COPY . ./
 
 ## Run NodeJS server
+USER node
 EXPOSE $PORT
 CMD ["npm", "run", "start"]
